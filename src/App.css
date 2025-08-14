@@ -1,38 +1,307 @@
-.App {
-  text-align: center;
+:root {
+  --bg: #0e0f1a;
+  --muted: rgba(255, 255, 255, 0.04);
+  --fg: #f8f9fc;
+  --acc: #6ca0ff;
+  --err: #ff6b6b;
+  --ok: #4ade80;
+  --shadow: rgba(0, 0, 0, 0.25);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body {
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--fg);
+  background: radial-gradient(1200px 600px at 10% -10%, #151827, var(--bg));
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--acc);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #91b8ff;
+}
+
+.container {
+  max-width: 980px;
+  margin: 32px auto;
+  padding: 16px;
+}
+
+.card {
+  background: rgba(18, 22, 38, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px var(--shadow);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #c9d5ff;
+}
+
+.content {
+  padding: 20px 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.col-6 {
+  grid-column: span 6;
+}
+
+.col-12 {
+  grid-column: span 12;
+}
+
+.field {
   display: flex;
   flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #dbe6ff;
+}
+
+input,
+select {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5ff;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--acc);
+  box-shadow: 0 0 8px rgba(108, 160, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-1px);
+}
+
+.err {
+  color: var(--err);
+  font-size: 12px;
+  min-height: 16px;
+}
+
+.hint {
+  color: #9fb0d9;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e6edff;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(108, 160, 255, 0.2);
 }
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #4c6ef5, #3b5bdb);
+  border: none;
+}
+
+.btn.success {
+  background: linear-gradient(135deg, #34d399, #059669);
+  border: none;
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.stepper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd7ff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.step:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.step.active {
+  background: linear-gradient(135deg, #4c6ef5, #3b5bdb);
+  color: #fff;
+}
+
+.step .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #3a518f;
+}
+
+.step.active .dot {
+  background: #fff;
+}
+
+.pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #a9bbff;
+  font-size: 11px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 16px 0;
+}
+
+.otpbox {
+  display: flex;
+  gap: 6px;
+}
+
+.otpbox input {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.otpbox input:focus {
+  outline: none;
+  border-color: var(--acc);
+  box-shadow: 0 0 0 2px rgba(108, 160, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.json {
+  font-family: ui-monospace, Menlo, Monaco, "Courier New", monospace;
+  font-size: 12px;
+  background: rgba(10, 15, 30, 0.8);
+  color: #daf;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: auto;
+}
+
+.kbd {
+  font-family: ui-monospace, Menlo, Monaco, "Courier New", monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #d4e1ff;
+}
+
+.faint {
+  color: #93a6d9;
+}
+
+.otp-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #dbe6ff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  animation: slideFadeIn 0.4s ease;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
