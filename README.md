@@ -1,9 +1,9 @@
-#Screenshort
+# Screenshort
 **Step - 01**
 ![step-01](Screenshort/1.png)
 ![step-01](Screenshort/2.png)
 ![step-01](Screenshort/3.png)
-*Step - 02**
+**Step - 02**
 ![step-02](Screenshort/4.png)
 ![step-01](Screenshort/5.png)
 
